@@ -5,7 +5,7 @@ Rest API desenvolvida em Java com Spring Boot que busca cotação do dólar
 
 <br>
 
-<h2>Justificativas do Projeto</h2><br/>
+<h2>Justificativas do Projeto</h2>
 . Buscar cotação do dólar consumindo uma API Rest específica;<br/>
 
 <h2>Finalidade do Projeto</h2><br/>
@@ -52,7 +52,7 @@ Rest API desenvolvida em Java com Spring Boot que busca cotação do dólar
 $ git clone https://github.com/kempesaguiar/cotacao.git
 
 # Entre no repositorio
-$ cd rest-api-node
+$ cd cotacao
 
 ```
 
