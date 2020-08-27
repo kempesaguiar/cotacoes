@@ -3,7 +3,6 @@
 ## Sobre
 Rest API desenvolvida em Java com Spring Boot que busca cotação do dólar
 
-<br>
 
 <h2>Justificativas do Projeto</h2>
 . Buscar cotação do dólar consumindo uma API Rest específica;<br/>
