@@ -34,7 +34,7 @@ Rest API desenvolvida em Java com Spring Boot que busca cotação do dólar
 . Listar última cotação disponibilizada - Passou;<br/>
 . API acessível - Passou;<br/>
 . Cotação com filtro de data;<br/>
-. Cotação com filtro de valor;<br/>
+. Cotação com filtro por ID;<br/>
 
 
 ## Tecnologias envolvidas
