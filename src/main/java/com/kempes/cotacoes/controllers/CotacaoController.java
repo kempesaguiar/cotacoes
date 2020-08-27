@@ -1,6 +1,5 @@
 package com.kempes.cotacoes.controllers;
 
-import java.math.BigDecimal;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
 
 import com.kempes.cotacoes.models.Cotacao;
 import com.kempes.cotacoes.repository.CotacaoRepository;
-import com.kempes.cotacoes.repository.DadosRepository;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,9 +25,6 @@ public class CotacaoController {
 	
 	@Autowired
 	CotacaoRepository cr;
-	
-	@Autowired
-	DadosRepository dr;
 	
 	@GetMapping("/")
 	@ApiOperation(value="Get Hello World")
@@ -67,12 +62,6 @@ public class CotacaoController {
 		
 		cotacao.setData_hora(hc);
 		
-		//cotacao.setTimestamp(hc);
-		
-		System.out.println(cc);
-		System.out.println(cd);
-		System.out.println(new BigDecimal(cd));
-		System.out.println(hc);
 		cr.save(cotacao);
 		return cotacao;
 	}
