@@ -1,31 +1,18 @@
 package com.kempes.cotacoes.controllers;
 
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Locale;
-import java.util.Map;
+import java.util.Optional;
 
-import javax.xml.bind.helpers.ParseConversionEventImpl;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.jackson.JsonObjectSerializer;
-import org.springframework.core.convert.converter.ConditionalConverter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.fasterxml.jackson.databind.util.JSONWrappedObject;
 import com.kempes.cotacoes.models.Cotacao;
-import com.kempes.cotacoes.models.Dados;
 import com.kempes.cotacoes.repository.CotacaoRepository;
 import com.kempes.cotacoes.repository.DadosRepository;
 
@@ -43,8 +30,6 @@ public class CotacaoController {
 	
 	@Autowired
 	DadosRepository dr;
-	
-	private static final Logger log = LoggerFactory.getLogger(CotacaoController.class);
 	
 	@GetMapping("/")
 	@ApiOperation(value="Get Hello World")
@@ -90,6 +75,14 @@ public class CotacaoController {
 		System.out.println(hc);
 		cr.save(cotacao);
 		return cotacao;
+	}
+	
+	@GetMapping("/busca/{id}")
+	@ApiOperation(value="Retorna Cotação pelo ID")
+	public Optional<Cotacao> buscaCotacaoPorData(@PathVariable("id") long id) {
+		Optional<Cotacao> cotacao = cr.findById(id);
+		return cotacao;
+		
 	}
 
 }
