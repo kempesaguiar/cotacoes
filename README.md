@@ -3,10 +3,12 @@
 ## Sobre
 Rest API desenvolvida em Java com Spring Boot que busca cotação do dólar
 
-Histórias:
-. Cadastro de modelo com dados da cotação
-. Rotina para buscar dados da cotação dólar
-. Listar dados de cotação
+<br>
+
+<h2>Histórias:</h2><br/>
+. Cadastro de modelo com dados da cotação;<br/>
+. Rotina para buscar dados da cotação dólar;<br/>
+. Listar dados de cotação;<br/>
 
 
 
