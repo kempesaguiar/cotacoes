@@ -1,4 +1,4 @@
-<h1 align="center" style="font-size:4em">API Rest Busca Cotacao</h1>
+<h1 align="center" style="font-size:4em">API Rest Busca Cotacão</h1>
 
 ## Sobre
 Rest API desenvolvida em Java com Spring Boot que busca cotação do dólar
