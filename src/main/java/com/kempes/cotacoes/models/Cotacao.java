@@ -13,6 +13,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 
 @Entity
 @Table(name="tb_cotacao")
@@ -23,20 +25,22 @@ public class Cotacao {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cotacao_seq")
 	private long id;
 	
-	@Column(nullable = false, length = 20)
-	private Timestamp timestamp;
+	//@Column(nullable = false)
+	//@DateTimeFormat(pattern = "yy-MM-dd HH:mm:ss")
+	private String timestamp;
 	
-	@Column(nullable = false, length = 10)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date data_cotacao;
-	
-	@Column(nullable = false)
-	private BigDecimal cotacao_compra;
+	//@Column(nullable = false, length = 10)
+	//@DateTimeFormat(pattern = "yy-MM-dd HH:mm:ss")
+	private String data_cotacao;
 	
 	@Column(nullable = false)
-	private BigDecimal cotacao_venda;
+	private String cotacao_compra;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@Column(nullable = false)
+	@NumberFormat(pattern = "###,###.00000")
+	private String cotacao_venda;
+	
+	//@DateTimeFormat(pattern = "yy-MM-dd HH:mm:ss")
 	private String data_hora;
 
 	public long getId() {
@@ -47,35 +51,35 @@ public class Cotacao {
 		this.id = id;
 	}
 
-	public Timestamp getTimestamp() {
+	public String getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Timestamp timestamp) {
+	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
 	}
 
-	public Date getData_cotacao() {
+	public String getData_cotacao() {
 		return data_cotacao;
 	}
 
-	public void setData_cotacao(Date data_cotacao) {
-		this.data_cotacao = data_cotacao;
+	public void setData_cotacao(String data_hora) {
+		this.data_cotacao = data_hora;
 	}
 
-	public BigDecimal getCotacao_compra() {
+	public String getCotacao_compra() {
 		return cotacao_compra;
 	}
 
-	public void setCotacao_compra(BigDecimal cotacao_compra) {
+	public void setCotacao_compra(String cotacao_compra) {
 		this.cotacao_compra = cotacao_compra;
 	}
 
-	public BigDecimal getCotacao_venda() {
+	public String getCotacao_venda() {
 		return cotacao_venda;
 	}
 
-	public void setCotacao_venda(BigDecimal cotacao_venda) {
+	public void setCotacao_venda(String cotacao_venda) {
 		this.cotacao_venda = cotacao_venda;
 	}
 
