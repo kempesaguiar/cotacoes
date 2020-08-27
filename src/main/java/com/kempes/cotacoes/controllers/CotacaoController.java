@@ -1,12 +1,16 @@
 package com.kempes.cotacoes.controllers;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -41,18 +45,25 @@ public class CotacaoController {
 	@GetMapping("/busca")
 	@ApiOperation(value="Retorna a cotação do dólar do dia")
 	public Cotacao Busca() {
-		
-		
 		String url = "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao='08-25-2020'&$top=100&$format=json";
 		RestTemplate rt = new RestTemplate();
-		
 		ResponseEntity<String> dados = rt.getForEntity(url, String.class);
-
+		
+		// Quebra a String em posições específicas
+		// Busca Cotacao de compra
 		String cc = dados.getBody().substring(139, 146);
+		// Busca cotacao de venda
 		String cd = dados.getBody().substring(162, 169);
+		// Busca data e hora da cotacao
 		String hc = dados.getBody().substring(191, 208);
+		// Pega data e hora atual
+		Date tm = new Date();
+		
+		String timestamp = tm.toString();
 		
 		Cotacao cotacao = new Cotacao();
+		
+		cotacao.setTimestamp(timestamp);
 		
 		cotacao.setCotacao_compra(cc);
 		
@@ -72,6 +83,18 @@ public class CotacaoController {
 		Optional<Cotacao> cotacao = cr.findById(id);
 		return cotacao;
 		
+	}
+	
+	@PutMapping("/atualiza")
+	@ApiOperation(value="Atualiza dados da cotação manualmente")
+	public Cotacao atualizaCotacao(@RequestBody Cotacao cotacao) {
+		return cr.save(cotacao);
+	}
+	
+	@DeleteMapping("/deleta")
+	@ApiOperation(value="Deleta cotação existente")
+	public void deletaCotacao(@RequestBody Cotacao cotacao) {
+		cr.delete(cotacao);
 	}
 
 }
